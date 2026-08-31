@@ -18,4 +18,16 @@ public class ClassRoom
         StudentList = studentList;
         SemesterStart = semesterStart;
     }
+
+    public override string ToString()
+    {
+        string students = "";
+
+        foreach (var item in StudentList)
+        {
+            students += item.GetInfo();
+        }
+
+        return $"Name: {ClassName}\n Starts at : {SemesterStart}\n Students: " + students;
+    }
 }

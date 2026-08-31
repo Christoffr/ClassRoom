@@ -18,4 +18,9 @@ public class Student
         BirthMonth = birthMonth;
         Birthday = birthday;
     }
+
+    public string GetInfo()
+    {
+        return $"{Name}, born at: {Birthday}/{BirthMonth}\n";
+    }
 }
