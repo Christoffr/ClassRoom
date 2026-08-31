@@ -1,2 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using ClassRoomNet60;
+
+ClassRoom classRoom = new ClassRoom( "3D", new List<Student> { new Student("Christoffer", 2, 28) }, new DateTime(2026, 8, 26));
+
