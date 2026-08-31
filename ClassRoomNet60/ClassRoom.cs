@@ -19,15 +19,46 @@ public class ClassRoom
         SemesterStart = semesterStart;
     }
 
+    public string Season(int birthMonth)
+    {
+        switch (birthMonth)
+        {
+            case 12:
+            case 1:
+            case 2:
+                return "Winter";
+            case 3:
+            case 4:
+            case 5:
+                return "Spring";
+            case 6:
+            case 7:
+            case 8:
+                return "Summer";
+            case 9:
+            case 10:
+            case 11:
+                return "Autumn";
+            default:
+                return "Invalid month";
+        }
+    }
+
+    public void BirthdaysPerSeasons()
+    {
+        var seasonCount = StudentList
+            .GroupBy(student => Season(student.BirthMonth))
+            .ToDictionary(group => group.Key, group => group.Count());
+
+        foreach (var item in seasonCount)
+        {
+            Console.WriteLine($"{item.Key}: {item.Value}");
+        }
+    }
+
     public override string ToString()
     {
-        string students = "";
-
-        foreach (var item in StudentList)
-        {
-            students += item.GetInfo();
-        }
-
-        return $"Name: {ClassName}\n Starts at : {SemesterStart}\n Students: " + students;
+        string students = string.Join("\n", StudentList.Select(student => $"{student.GetInfo()}, {Season(student.BirthMonth)}"));
+        return $"Name: {ClassName}\n Starts at : {SemesterStart}\n Students:\n{students}";
     }
 }
